@@ -1,0 +1,6 @@
+{
+    "id": "60080c981d90b15bc982676b",
+    "name": "bucketCollectionName",
+    "value": "mongo_buckets_solution_5",
+    "from_secret": false
+}

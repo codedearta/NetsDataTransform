@@ -1,0 +1,6 @@
+{
+    "id": "60080b5e1d90b15bc9809620",
+    "name": "landingCollectionName",
+    "value": "landingSecret",
+    "from_secret": true
+}

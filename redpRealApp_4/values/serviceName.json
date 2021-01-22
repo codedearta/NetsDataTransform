@@ -1,0 +1,6 @@
+{
+    "id": "60080b81fa5fa71e7e82591d",
+    "name": "serviceName",
+    "value": "mongodb-atlas",
+    "from_secret": false
+}

@@ -1,0 +1,5 @@
+{
+    "name": "organisationsCollectionName",
+    "value": "mongo_organisations",
+    "from_secret": false
+}

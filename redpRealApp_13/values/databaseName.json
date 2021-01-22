@@ -1,0 +1,6 @@
+{
+    "id": "60080cb021f894d3921f3f27",
+    "name": "databaseName",
+    "value": "DWH_TEST",
+    "from_secret": false
+}

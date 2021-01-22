@@ -1,0 +1,11 @@
+{
+    "id": "60080bf65ce70e48820142a5",
+    "name": "mongodb-atlas",
+    "type": "mongodb-atlas",
+    "config": {
+        "clusterName": "TransformTest",
+        "readPreference": "primary",
+        "wireProtocolEnabled": false
+    },
+    "version": 1
+}

@@ -1,0 +1,171 @@
+const Realm = require("realm");
+const moment = require('moment');
+const argv = require('minimist')(process.argv.slice(2));
+const fs = require('fs');
+console.log("commandline args: ");
+console.dir(argv);
+
+const appId = "transform1-oqphh"; // Set Realm app ID here.
+
+
+let lastEnd= moment(argv.s);
+function giveNextRange(parallelFunctionCalls) {
+    let ret = { 
+       start: lastEnd,
+       end: moment(lastEnd).add(parallelFunctionCalls,"s")
+    };
+
+    lastEnd = ret.end;
+    console.info(`processing range: ${JSON.stringify(ret)}`);
+    return ret.start;
+}
+
+async function run(appId, appNumber) {
+  let user;
+  try {
+    errorLogs = [];
+    transformStart = moment();
+    const app = new Realm.App({ id: appId, timeout: 90000 });
+    const credentials = Realm.Credentials.anonymous();
+    user = await app.logIn(credentials);
+    const parallelFunctionCalls = argv.parallelCalls;
+    const sequences = argv.sequences;
+
+    overallUpdates = 0;
+    overallDuration = moment.duration();
+    for(let sequence=1;sequence<=sequences;sequence++) {
+        console.log(`starting seconds ${appNumber*sequence*parallelFunctionCalls} appNumber: ${appNumber}`);
+        let start = giveNextRange(parallelFunctionCalls);
+        let end = moment(start).add(1,"s");
+
+        const calls = [];
+        const seconds = parallelFunctionCalls;
+
+        console.log(`app: ${appNumber} ${appId} start: ${start}`);
+
+
+        // async function* asyncGenerator(start, end) {
+        //     for(let i=0; i<=seconds-1;i++) {
+        //         start = start.add(1,"s");
+        //         end = end.add(1,"s");
+        //         yield calls.push(user.functions.transformRange(start.toDate(), end.toDate()));
+        //     }
+        // }
+
+        // for await (let call of asyncGenerator(start, end)) {
+        //     console.log(call);
+        //     //console.log(num);
+        // }
+
+        execBegin = moment();
+        for(let i=0; i<seconds;i++) {
+            calls.push(
+              user.functions.transformRange(start.toDate(), end.toDate(), argv.landingCollection, argv.bucketCollection)
+              .catch(e => { 
+                      errorLog = { 
+                        exception: e,
+                        range: {
+                          start: start,
+                          end: end
+                        }
+                      };
+                      errorLogs.push(errorLog);
+                      //console.dir(JSON.stringify(errorLog.exception.message));
+                      return {"update Count": 0, errorLog: errorLog };
+                    }));
+            start = start.add(1,"s");
+            end = end.add(1,"s");
+        }
+        console.log(`app: ${appNumber} ${appId} end: ${end}`);
+
+        // async function* asyncGenerator() {
+        //   for(let i=0; i<seconds;i++) {
+        //     yield user.functions
+        //       .transformRange(start.toDate(), end.toDate())
+        //       .catch(e => { 
+        //         errorLog = `exception ${e} start: ${start} end: ${end}`;
+        //         errorLogs.push(errorLog);
+        //         return `exception ${e} start: ${start} end: ${end}`;
+        //       });
+        //     start = start.add(1,"s");
+        //     end = end.add(1,"s");
+        //   }
+        // }
+
+        // results = [];
+        // for await (let result of asyncGenerator(calls)) {
+        //     //console.log(call);
+        //     results.push(result);
+        //     //console.log("call results ", call);
+        //      //console.log(num);
+        // }
+        
+        results = await Promise.all(calls);
+
+        execEnd = moment();
+
+        var duration = moment.duration(execEnd.diff(execBegin))
+        overallDuration = overallDuration.add(duration);
+        totalUpdates = results.map(i => i["update Count"]).reduce((acc, curr) => acc+curr);
+        
+        overallUpdates += totalUpdates;
+        console.log(`results app ${appNumber} ${appId} sequence ${sequence} total updates: ${totalUpdates}, duration: ${duration.seconds()}s ${duration.milliseconds()}ms`);
+        if(sequence===sequences) { console.log(`app ${appNumber} is done.`); }
+    }
+    transformEnd = moment();
+
+    fs.writeFile('error.log', JSON.stringify(errorLogs), function (err) {
+      if (err) return console.log(err);
+      console.log('error log is in > error.log');
+    }); 
+
+    console.log("errosLogs (short errors): ");
+    formattedErrors = errorLogs.map(err => `message: ${err.exception.message} range from: ${err.range.start} end: ${err.range.end}`);
+    console.dir(formattedErrors);
+    
+    const rt = moment.duration(transformEnd.diff(transformStart));
+    const runtime = `${rt.hours()}h ${rt.minutes()}m ${rt.seconds()}s`;
+    const summary = {
+      "overall_updates": overallUpdates,
+      "transformStart": `${transformStart}`,
+      "transformEnd": `${transformEnd}`,
+      "runtime": `${runtime}`,
+      "last_processing_date": `${lastEnd}`,
+      "argv": argv,
+      "numberOfErrors": errorLogs.length
+    };
+    console.log("runtime summary: ");
+    console.dir(summary);
+   
+  } catch(e) {
+    console.log(e);
+    //process.exit(1);
+  } finally {
+    //user.logOut();
+    //process.exit(1);
+  }
+};
+
+ 
+appIds = ["transform1-oqphh"
+,"transform2-lhmlo"
+,"transform3-mpihz"
+,"transform4-fziyv"
+,"transform5-tfhrr"
+,"transform6-czjyj"
+,"transform7-daelp"
+,"transform8-hyqgj"
+,"transform9-nmxar"
+,"transform10-pjwhs"
+,"transform11-fctgn"
+,"transform12-rtszz"
+,"transform13-uqmlp"
+,"transform14-azbvr"
+,"transform15-clfxv"];
+
+//appIds = ["transform1-oqphh"];
+
+appIds.forEach((appId, idx) =>  {
+   appNumber = idx+1;
+   run(appId, appNumber).catch(console.dir);
+});
