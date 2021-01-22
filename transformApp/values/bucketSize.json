@@ -1,7 +1,0 @@
-{
-    "name": "bucketSize",
-    "value": {
-        "$numberInt": "100"
-    },
-    "from_secret": false
-}

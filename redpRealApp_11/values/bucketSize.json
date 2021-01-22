@@ -1,8 +1,0 @@
-{
-    "id": "60080c8521f894d3921f0970",
-    "name": "bucketSize",
-    "value": {
-        "$numberInt": "100"
-    },
-    "from_secret": false
-}
