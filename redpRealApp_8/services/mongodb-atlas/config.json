@@ -1,0 +1,11 @@
+{
+    "id": "60080c40fa5fa71e7e8387c9",
+    "name": "mongodb-atlas",
+    "type": "mongodb-atlas",
+    "config": {
+        "clusterName": "cl0-t-mypay",
+        "readPreference": "primary",
+        "wireProtocolEnabled": false
+    },
+    "version": 1
+}

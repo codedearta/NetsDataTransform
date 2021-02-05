@@ -1,0 +1,15 @@
+{
+    "app_id": "transform2-lhmlo",
+    "config_version": 20200603,
+    "name": "transform2",
+    "location": "IE",
+    "deployment_model": "GLOBAL",
+    "security": {},
+    "custom_user_data_config": {
+        "enabled": false
+    },
+    "sync": {
+        "development_mode_enabled": false
+    },
+    "environment": "none"
+}

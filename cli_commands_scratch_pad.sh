@@ -71,9 +71,132 @@ realm-cli secrets add --app-id "transform15-clfxv" --name landingSecret --value 
 
 
 node nodeApp_v2.js \
+-s '2018-01-01T00:00:00' \
+--landingCollection 'mongo_landing_2018_Q1' \
+--bucketCollection 'mongo_buckets' \
+--sequences 4464 \
+--parallelCalls 4 \
+--secondsRange 3 \
+
+node nodeApp_v2.js \
+-s '2018-01-01T00:00:00' \
+--landingCollection 'mongo_landing_2018_Q1' \
+--bucketCollection 'mongo_buckets' \
+--sequences 1786 \
+--parallelCalls 100 \
+--secondsRange 3 \
+
+
+
+node nodeApp_v2.js \
+-s '2018-01-01T00:00:00' \
+--landingCollection 'mongo_landing_2018_Q1' \
+--bucketCollection 'mongo_buckets' \
+--sequences 1 \
+--parallelCalls 100 \
+--secondsRange 3 \
+
+
+
+================
+
+
+node nodeApp_v2.js \
+-s '2018-01-01T00:00:00' \
+--landingCollection 'mongo_landing_2018_Q1' \
+--bucketCollection 'mongo_buckets' \
+--sequences 4464 \
+--parallelCalls 4 \
+--secondsRange 3 \
+
+
+node nodeApp_v2.js \
 -s '2018-04-01T00:00:00' \
 --landingCollection 'mongo_landing_2018_Q2' \
 --bucketCollection 'mongo_buckets' \
 --sequences 4464 \
---parallelCalls 40 \
+--parallelCalls 4 \
+--secondsRange 3 \
+
+node nodeApp_v2.js \
+-s '2018-07-01T00:00:00' \
+--landingCollection 'mongo_landing_2018_Q3' \
+--bucketCollection 'mongo_buckets' \
+--sequences 4464 \
+--parallelCalls 4 \
+--secondsRange 3 \
+
+node nodeApp_v2.js \
+-s '2018-10-01T00:00:00' \
+--landingCollection 'mongo_landing_2018_Q4' \
+--bucketCollection 'mongo_buckets' \
+--sequences 4464 \
+--parallelCalls 4 \
+--secondsRange 3 \
+
+node nodeApp_v2.js \
+-s '2019-01-01T00:00:00' \
+--landingCollection 'mongo_landing_2019_Q1' \
+--bucketCollection 'mongo_buckets' \
+--sequences 4464 \
+--parallelCalls 4 \
+--secondsRange 3 \
+
+
+node nodeApp_v2.js \
+-s '2019-04-01T00:00:00' \
+--landingCollection 'mongo_landing_2019_Q2' \
+--bucketCollection 'mongo_buckets' \
+--sequences 4464 \
+--parallelCalls 4 \
+--secondsRange 3 \
+
+node nodeApp_v2.js \
+-s '2019-07-01T00:00:00' \
+--landingCollection 'mongo_landing_2019_Q3' \
+--bucketCollection 'mongo_buckets' \
+--sequences 4464 \
+--parallelCalls 4 \
+--secondsRange 3 \
+
+node nodeApp_v2.js \
+-s '2019-10-01T00:00:00' \
+--landingCollection 'mongo_landing_2019_Q4' \
+--bucketCollection 'mongo_buckets' \
+--sequences 4464 \
+--parallelCalls 4 \
+--secondsRange 3 \
+
+
+node nodeApp_v2.js \
+-s '2020-01-01T00:00:00' \
+--landingCollection 'mongo_landing_2020_Q1' \
+--bucketCollection 'mongo_buckets' \
+--sequences 4464 \
+--parallelCalls 4 \
+--secondsRange 3 \
+
+
+node nodeApp_v2.js \
+-s '2020-04-01T00:00:00' \
+--landingCollection 'mongo_landing_2020_Q2' \
+--bucketCollection 'mongo_buckets' \
+--sequences 4464 \
+--parallelCalls 4 \
+--secondsRange 3 \
+
+node nodeApp_v2.js \
+-s '2020-07-01T00:00:00' \
+--landingCollection 'mongo_landing_2020_Q3' \
+--bucketCollection 'mongo_buckets' \
+--sequences 4464 \
+--parallelCalls 4 \
+--secondsRange 3 \
+
+node nodeApp_v2.js \
+-s '2020-10-01T00:00:00' \
+--landingCollection 'mongo_landing_2020_Q4' \
+--bucketCollection 'mongo_buckets' \
+--sequences 4464 \
+--parallelCalls 4 \
 --secondsRange 3 \

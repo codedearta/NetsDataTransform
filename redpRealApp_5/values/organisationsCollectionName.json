@@ -1,0 +1,6 @@
+{
+    "id": "60080bf75ce70e4882014427",
+    "name": "organisationsCollectionName",
+    "value": "mongo_organisations",
+    "from_secret": false
+}

@@ -88,3 +88,19 @@ sed -i '' "s/cl0-t-mypay/TransformTest/g" redpRealApp_12/services/mongodb-atlas/
 sed -i '' "s/cl0-t-mypay/TransformTest/g" redpRealApp_13/services/mongodb-atlas/config.json
 sed -i '' "s/cl0-t-mypay/TransformTest/g" redpRealApp_14/services/mongodb-atlas/config.json
 sed -i '' "s/cl0-t-mypay/TransformTest/g" redpRealApp_15/services/mongodb-atlas/config.json
+
+
+sed -i '' "s/TransformTest/cl0-t-mypay/g" redpRealApp_2/services/mongodb-atlas/config.json
+sed -i '' "s/TransformTest/cl0-t-mypay/g" redpRealApp_3/services/mongodb-atlas/config.json
+sed -i '' "s/TransformTest/cl0-t-mypay/g" redpRealApp_4/services/mongodb-atlas/config.json
+sed -i '' "s/TransformTest/cl0-t-mypay/g" redpRealApp_5/services/mongodb-atlas/config.json
+sed -i '' "s/TransformTest/cl0-t-mypay/g" redpRealApp_6/services/mongodb-atlas/config.json
+sed -i '' "s/TransformTest/cl0-t-mypay/g" redpRealApp_7/services/mongodb-atlas/config.json
+sed -i '' "s/TransformTest/cl0-t-mypay/g" redpRealApp_8/services/mongodb-atlas/config.json
+sed -i '' "s/TransformTest/cl0-t-mypay/g" redpRealApp_9/services/mongodb-atlas/config.json
+sed -i '' "s/TransformTest/cl0-t-mypay/g" redpRealApp_10/services/mongodb-atlas/config.json
+sed -i '' "s/TransformTest/cl0-t-mypay/g" redpRealApp_11/services/mongodb-atlas/config.json
+sed -i '' "s/TransformTest/cl0-t-mypay/g" redpRealApp_12/services/mongodb-atlas/config.json
+sed -i '' "s/TransformTest/cl0-t-mypay/g" redpRealApp_13/services/mongodb-atlas/config.json
+sed -i '' "s/TransformTest/cl0-t-mypay/g" redpRealApp_14/services/mongodb-atlas/config.json
+sed -i '' "s/TransformTest/cl0-t-mypay/g" redpRealApp_15/services/mongodb-atlas/config.json

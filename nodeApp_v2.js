@@ -40,24 +40,6 @@ async function run(appId, appNumber) {
         let end = moment(start).add(argv.secondsRange,"s");
 
         const calls = [];
-        //const seconds = parallelFunctionCalls;
-
-        // console.log(`app: ${appNumber} ${appId} start: ${start}`);
-        // console.log(`app: ${appNumber} ${appId} end: ${end}`);
-
-
-        // async function* asyncGenerator(start, end) {
-        //     for(let i=0; i<=seconds-1;i++) {
-        //         start = start.add(1,"s");
-        //         end = end.add(1,"s");
-        //         yield calls.push(user.functions.transformRange(start.toDate(), end.toDate()));
-        //     }
-        // }
-
-        // for await (let call of asyncGenerator(start, end)) {
-        //     console.log(call);
-        //     //console.log(num);
-        // }
 
         execBegin = moment();
         for(let i=0; i<parallelFunctionCalls;i++) {
@@ -81,30 +63,6 @@ async function run(appId, appNumber) {
             start = start.add(argv.secondsRange,"s");
             end = end.add(argv.secondsRange,"s");
         }
-        // console.log(`app: ${appNumber} ${appId} start: ${start}`);
-        // console.log(`app: ${appNumber} ${appId} end: ${end}`);
-
-        // async function* asyncGenerator() {
-        //   for(let i=0; i<seconds;i++) {
-        //     yield user.functions
-        //       .transformRange(start.toDate(), end.toDate())
-        //       .catch(e => { 
-        //         errorLog = `exception ${e} start: ${start} end: ${end}`;
-        //         errorLogs.push(errorLog);
-        //         return `exception ${e} start: ${start} end: ${end}`;
-        //       });
-        //     start = start.add(1,"s");
-        //     end = end.add(1,"s");
-        //   }
-        // }
-
-        // results = [];
-        // for await (let result of asyncGenerator(calls)) {
-        //     //console.log(call);
-        //     results.push(result);
-        //     //console.log("call results ", call);
-        //      //console.log(num);
-        // }
         
         results = await Promise.all(calls);
 
@@ -120,7 +78,7 @@ async function run(appId, appNumber) {
     }
     transformEnd = moment();
 
-    fs.writeFile('error.log', JSON.stringify(errorLogs), function (err) {
+    fs.writeFile(argv.landingCollection+"-"+appId+'-error.log', JSON.stringify(errorLogs), function (err) {
       if (err) return console.log(err);
       console.log('error log is in > error.log');
     }); 
